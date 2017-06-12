@@ -1,0 +1,23 @@
+{
+    "name": "msp/apienhancer",
+    "description": "",
+    "require": {
+        "php": "~7.0.0"
+    },
+    "conflicts": {
+        "msp/apiboost": "*"
+    },
+    "suggest": {
+
+    },
+    "type": "magento2-module",
+    "license": "OSL 3.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MSP\\APIEnhancer\\": ""
+        }
+    }
+}
