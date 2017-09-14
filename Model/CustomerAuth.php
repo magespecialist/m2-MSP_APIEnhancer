@@ -68,7 +68,7 @@ class CustomerAuth implements CustomerAuthInterface
             if (preg_match('/^bearer\s+\"?(.+?)\"?\s*$/i', $authHeader, $matches)) {
                 $token = $this->tokenFactory->create()->loadByToken($matches[1]);
 
-                if ($token->getId() && !$token->getRevoked()) {
+                if ($token->getId() && !$token->getRevoked() && $token->getCustomerId()) {
                     $customer = $this->customerRepository->getById($token->getCustomerId());
 
                     $this->customer = $customer;
