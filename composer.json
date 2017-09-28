@@ -2,7 +2,8 @@
     "name": "msp/apienhancer",
     "description": "",
     "require": {
-        "php": "^7.0|^7.1"
+        "php": "^7.0|^7.1",
+        "msp/common": "*"
     },
     "conflicts": {
         "msp/apiboost": "*"
