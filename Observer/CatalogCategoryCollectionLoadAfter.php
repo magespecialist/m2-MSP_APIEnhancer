@@ -23,6 +23,7 @@ namespace MSP\APIEnhancer\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use MSP\APIEnhancer\Api\TagInterface;
+use Magento\Catalog\Model\Category;
 
 class CatalogCategoryCollectionLoadAfter implements ObserverInterface
 {
@@ -44,11 +45,11 @@ class CatalogCategoryCollectionLoadAfter implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $collection = $observer->getCategoryCollection();
-        $tags = ['catalog_category'];
-        $ids = array_keys($collection->getItems());
+        $tags       = [Category::CACHE_TAG];
+        $ids        = array_keys($collection->getItems());
 
         foreach ($ids as $id) {
-            $tags[] = 'catalog_category_' . $id;
+            $tags[] = Category::CACHE_TAG . '_' . $id;
         }
 
         $this->tag->addTags($tags);

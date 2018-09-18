@@ -29,6 +29,7 @@ use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use MSP\APIEnhancer\Api\CustomerAuthInterface;
 use MSP\APIEnhancer\Api\TagInterface;
+use Magento\Catalog\Model\Product;
 
 class CatalogProductLoadAfter implements ObserverInterface
 {
@@ -112,6 +113,6 @@ class CatalogProductLoadAfter implements ObserverInterface
             }
         }
 
-        $this->tag->addTags(['catalog_product', 'catalog_product_' . $productId]);
+        $this->tag->addTags([Product::CACHE_TAG, Product::CACHE_TAG .'_' . $productId]);
     }
 }

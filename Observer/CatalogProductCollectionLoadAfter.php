@@ -29,6 +29,7 @@ use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use MSP\APIEnhancer\Api\CustomerAuthInterface;
 use MSP\APIEnhancer\Api\TagInterface;
+use Magento\Catalog\Model\Product;
 
 class CatalogProductCollectionLoadAfter implements ObserverInterface
 {
@@ -90,7 +91,7 @@ class CatalogProductCollectionLoadAfter implements ObserverInterface
 
         $fixCatalogRules = !!$this->scopeConfig->getValue(static::XML_PATH_FIX_CATALOG_RULES);
 
-        $tags = ['catalog_product'];
+        $tags       = [Product::CACHE_TAG];
         $productIds = array_keys($collection->getItems());
 
         if ($fixCatalogRules) {
@@ -115,7 +116,7 @@ class CatalogProductCollectionLoadAfter implements ObserverInterface
             if ($fixCatalogRules && isset($rulePrices[$product->getId()])) {
                 $product->setCustomAttribute('special_price', $rulePrices[$product->getId()]);
             }
-            $tags[] = 'catalog_product_' . $product->getId();
+            $tags[] = Product::CACHE_TAG . '_' . $product->getId();
         }
 
         $this->tag->addTags($tags);
