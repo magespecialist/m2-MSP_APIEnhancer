@@ -83,6 +83,10 @@ class EnhancerManagement implements EnhancerManagementInterface
     {
         // Make sure it is a rest-API call (at this level we cannot rely on detected area)
         $uriPath = $this->request->getRequestUri();
+
+        // Allow requests with index.php in it.
+        $uriPath = str_replace('index.php/', '', $uriPath);
+
         if (strpos($uriPath, static::BASE_PATH . '/') !== 0) {
             return false;
         }
