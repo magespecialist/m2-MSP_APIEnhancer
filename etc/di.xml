@@ -38,6 +38,8 @@
                 <item name="products" xsi:type="string">^/rest/V1/products</item>
                 <item name="categories" xsi:type="string">^/rest/V1/categories</item>
             </argument>
+            <argument name="excludePaths" xsi:type="array">
+            </argument>
         </arguments>
     </type>
 

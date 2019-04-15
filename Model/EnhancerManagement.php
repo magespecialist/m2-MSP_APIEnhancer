@@ -41,6 +41,11 @@ class EnhancerManagement implements EnhancerManagementInterface
     private $paths;
 
     /**
+     * @var array
+     */
+    private $excludePaths;
+
+    /**
      * @var PageCacheConfig
      */
     private $pageCacheConfig;
@@ -54,10 +59,12 @@ class EnhancerManagement implements EnhancerManagementInterface
         RequestInterface $request,
         PageCacheConfig $pageCacheConfig,
         StateInterface $state,
-        array $paths = []
+        array $paths = [],
+        array $excludePaths = []
     ) {
         $this->request = $request;
         $this->paths = $paths;
+        $this->excludePaths = $excludePaths;
         $this->pageCacheConfig = $pageCacheConfig;
         $this->state = $state;
     }
@@ -90,6 +97,13 @@ class EnhancerManagement implements EnhancerManagementInterface
         // Not GET calls should not be cached
         if (strtoupper($this->request->getMethod()) != 'GET') {
             return false;
+        }
+
+        // Exclude for specific requests.
+        foreach ($this->excludePaths as $code => $path) {
+            if (preg_match('|' . $path . '|i', $uriPath)) {
+                return false;
+            }
         }
 
         foreach ($this->paths as $code => $path) {
