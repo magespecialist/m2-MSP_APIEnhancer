@@ -20,9 +20,9 @@
 
 namespace MSP\APIEnhancer\Plugin;
 
-use MSP\APIEnhancer\Api\CacheManagementInterface;
-use MSP\APIEnhancer\Api\EnhancerManagementInterface;
-use MSP\APIEnhancer\Api\VarnishManagementInterface;
+use MSP\APIEnhancer\Api\CacheManagementInterface\Proxy as CacheManagementInterface;
+use MSP\APIEnhancer\Api\EnhancerManagementInterface\Proxy as EnhancerManagementInterface;
+use MSP\APIEnhancer\Api\VarnishManagementInterface\Proxy as VarnishManagementInterface;
 
 class AppInterfacePlugin
 {
